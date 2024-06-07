@@ -15,10 +15,19 @@ pipeline {
             steps {
                 script {
                     def jobsProperties = readProperties file: 'jobs.properties'
+                    def jobsToTrigger = []
+                    def counter = 0
                     jobsProperties.each { key, value ->
                         if (value == 'Y') {
-                            println "Building Jenkins Job: ${key}"
-                            build job: key, wait: true
+                            jobsToTrigger.add(key)
+                            counter++
+                            if (counter == 2 || counter == jobsProperties.size()) {
+                                println "Building Jenkins Jobs: ${jobsToTrigger}"
+                                jobsToTrigger.each { job ->
+                                    build job: job, wait: true
+                                }
+                                jobsToTrigger = []
+                            }
                         }
                     }
                 }
