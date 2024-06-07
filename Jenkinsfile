@@ -17,7 +17,7 @@ pipeline {
                     def jobsProperties = readProperties file: 'jobs.properties'
                     jobsProperties.each { key, value ->
                         if (value == 'Y') {
-                            println "Building Jenkins Job: key"
+                            println "Building Jenkins Job: ${key}"
                             build job: key, wait: true
                         }
                     }
