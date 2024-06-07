@@ -8,10 +8,6 @@ pipeline {
                     def props = readProperties file: 'jobs.properties'
                     // Print out the properties
                     println "Loaded properties: ${props}"
-                    // Set environment variables from properties
-                    env.demo = props['demo']
-                    env.demo2 = props['demo2']
-                    env.Testing_Sample = props['Testing/Sample/']
                 }
             }
         }
