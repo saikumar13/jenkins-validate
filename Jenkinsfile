@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Load Properties') {
             steps {
+				script{
                 // Load properties from file
                 def props = readProperties file: 'jobs.properties'
                 // Print out the properties
@@ -11,6 +12,7 @@ pipeline {
                 env.demo = props['demo']
                 env.demo2 = props['demo2']
                 env.Testing_Sample = props['Testing/Sample/']
+				}
             }
         }
         stage('Example') {
