@@ -24,7 +24,7 @@ pipeline {
                             if (counter == 2 || counter == jobsProperties.size()) {
                                 println "Building Jenkins Jobs: ${jobsToTrigger}"
                                 jobsToTrigger.each { job ->
-                                    build job: job, wait: true
+                                    build job: job, wait: false
                                 }
                                 jobsToTrigger = []
                             }
